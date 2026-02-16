@@ -1,6 +1,6 @@
-#React Application
+# React Application
 
-#Layout
+# Layout
 
 - Header
   - Logo
@@ -19,7 +19,7 @@
   - Links
   - Contact & address
 
-#Parcel
+# Parcel
 
 - Dev build
 - Local Server
@@ -37,3 +37,5 @@
 - HTTPs (if we want to test something that only works on SSL)
 - Tree shaking - remove unused code
 - Different dev and production build
+
+# Add Allow CORS: Access-Control-Allow-Origin chrome extension to resolve cors error.
