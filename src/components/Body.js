@@ -5,10 +5,16 @@ import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [resList, setResList] = useState([]);
+  const [resListToDisplay, setResListToDisplay] = useState([]);
+  const [searchText, setSearchText] = useState("");
+  const [isTopRatedRestaurants, setIsTopRatedRestaurants] = useState(false);
   useEffect(() => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    setResListToDisplay(resList);
+  }, [resList]);
   const fetchData = async () => {
     const data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING",
@@ -25,20 +31,46 @@ const Body = () => {
   ) : (
     <div className="body">
       <div className="filter">
+        <div className="search">
+          <input
+            type="text"
+            className="search-box"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+          <button
+            className="search-btn"
+            onClick={() => {
+              const filteredList = resList.filter((res) => {
+                return res.info.name
+                  .toLowerCase()
+                  .includes(searchText.toLowerCase());
+              });
+              setResListToDisplay(filteredList);
+            }}
+          >
+            Search
+          </button>
+        </div>
         <button
           className="filter-btn"
           onClick={() => {
-            const filteredList = resList.filter(
-              (res) => res.info.avgRating > 4.2,
-            );
-            setResList(filteredList);
+            isTopRatedRestaurants
+              ? setResListToDisplay(resList)
+              : setResListToDisplay(
+                  resList.filter((res) => res.info.avgRating > 4.2),
+                );
+
+            setIsTopRatedRestaurants(!isTopRatedRestaurants);
           }}
         >
-          Top Rated Restaurants
+          {isTopRatedRestaurants
+            ? "Show All Restaurants"
+            : "Top Rated Restaurants"}
         </button>
       </div>
       <div className="res-container">
-        {resList?.map((resObj) => {
+        {resListToDisplay?.map((resObj) => {
           return <RestaurantCard key={resObj.info.id} resData={resObj.info} />;
         })}
       </div>

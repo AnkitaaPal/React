@@ -30,11 +30,13 @@
   cursor: pointer;
 }
 .filter {
+  display: flex;
   padding: 10px 0px;
 }
 .filter-btn {
   padding: 10px;
   cursor: pointer;
+  margin: 0px 10px;
 }
 .res-logo {
   width: 100%;
@@ -55,6 +57,22 @@
 .login-btn {
   padding: 0 10px;
   margin: 10px;
+  cursor: pointer;
+  border: none;
+  font-weight: bold;
+}
+.search {
+  display: flex;
+  margin-right: 20px;
+}
+.search-box {
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.search-btn {
+  padding: 10px;
+  margin-left: 5px;
   cursor: pointer;
   border: none;
   font-weight: bold;
