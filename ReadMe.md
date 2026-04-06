@@ -39,3 +39,8 @@
 - Different dev and production build
 
 # Add Allow CORS: Access-Control-Allow-Origin chrome extension to resolve cors error.
+
+# Two types of routing in web app
+
+- Client Side Routing
+- Server Side Routing
